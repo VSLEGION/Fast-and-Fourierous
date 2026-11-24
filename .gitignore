@@ -1,0 +1,34 @@
+# --- Shock Lab .gitignore ---
+
+# Generated data (produced by notebook 01 / shocklab.data.generate; see CLAUDE.md §3)
+data/
+
+# Model checkpoints and run artifacts (see CLAUDE.md §4)
+checkpoints/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Node / frontend
+web/node_modules/
+web/dist/
+node_modules/
+
+# OS / editor
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Env
+.env

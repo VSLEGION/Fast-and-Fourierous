@@ -1,0 +1,163 @@
+/* Shock Lab design system — PhysicsX-inspired, our own brand (CLAUDE.md §7).
+   Monochrome, lots of white space, hairline strokes, mono uppercase micro-labels,
+   warm off-white diagram panels, a sparing orange->violet accent. */
+
+:root,
+[data-theme="paper"] {
+  --bg: #f7f7f5;
+  --panel: #eeeee8; /* warm diagram panel */
+  --surface: #ffffff;
+  --ink: #1e1e1e;
+  --muted: #6b6b66;
+  --hairline: rgba(30, 30, 30, 0.14);
+  --accent-a: #ff7a1a;
+  --accent-b: #7b5cff;
+  --grid-weak: rgba(30, 30, 30, 0.06);
+}
+
+[data-theme="studio"] {
+  --bg: #0b0b0c;
+  --panel: #151515;
+  --surface: #1e1e1e;
+  --ink: #f2f2f0;
+  --muted: #9a9a94;
+  --hairline: rgba(255, 255, 255, 0.12);
+  --accent-a: #ff7a1a;
+  --accent-b: #7b5cff;
+  --grid-weak: rgba(255, 255, 255, 0.05);
+}
+
+/* model colors (colorblind-checked; also distinguished by labels + dash) */
+:root {
+  --c-truth: var(--ink);
+  --c-fno: #ff6b1a;
+  --c-pino: #00a3a3;
+  --c-pinn: #7b5cff;
+  --c-baseline: #8a8a85;
+
+  --radius: 12px;
+  --radius-pill: 999px;
+  --space: 8px;
+  --font-ui: "Inter Tight", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "tnum" 1; /* tabular figures */
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* monospace uppercase micro-labels: `01 — INITIAL CONDITION`, `REL L2` */
+.microlabel {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+}
+
+.panel-warm {
+  background: var(--panel);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--hairline);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+.accent-text {
+  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+button {
+  font-family: var(--font-ui);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: border-color 150ms ease-out, background 150ms ease-out;
+}
+button:hover {
+  border-color: var(--ink);
+}
+button.active {
+  border-color: transparent;
+  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  color: #fff;
+}
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent-a);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

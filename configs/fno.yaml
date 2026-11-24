@@ -1,0 +1,18 @@
+# Space-time FNO-2D, data only.  CLAUDE.md §5.2
+name: fno
+seed: 0
+device: cuda
+
+# architecture
+modes_x: 32       # x Fourier modes kept (x is periodic -> +/- modes)
+modes_t: 16       # t Fourier modes kept (t padded ~25% then rfft)
+width: 64
+n_layers: 4
+t_pad_frac: 0.25
+
+# training: relative-L2 loss, Adam + cosine decay, on 256 x 51
+epochs: 500
+batch_size: 20
+lr: 1.0e-3
+weight_decay: 0.0
+log_every: 10     # log every N epochs

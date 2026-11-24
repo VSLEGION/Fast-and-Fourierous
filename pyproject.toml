@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shocklab"
+version = "0.1.0"
+description = "Shock Lab: Burgers' equation PINN -> FNO -> PINO interactive class demo"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Shock Lab" }]
+
+# Runtime deps live in requirements.txt (PyTorch is installed out-of-band with a
+# CUDA index URL, so it is intentionally not declared here). See CLAUDE.md §4/§8.
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["shocklab*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+# The physics core is ported verbatim from 01_physics_and_data.ipynb; keep its
+# dense numerical style intact rather than letting lint churn it.
+extend-exclude = ["01_physics_and_data.ipynb"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B", "UP"]
+# E501 (line length) is owned by the formatter; E741 would flag the single-letter
+# math names (k, E, Q, ...) carried over verbatim from the reference solver.
+ignore = ["E501", "E741"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,31 @@
+# PINO: the FNO architecture trained with the PINN's physics loss added.  CLAUDE.md §5.3
+name: pino
+seed: 0
+device: cuda
+
+# architecture (identical to the FNO)
+modes_x: 32
+modes_t: 16
+width: 64
+n_layers: 4
+t_pad_frac: 0.25
+
+init_from_fno: true          # warm-start from checkpoints/fno/model.pt
+
+# physics loss: residual on a finer time grid, normalized by the truth's floor R0
+nt_fine: 101                 # finer t grid (256 x 101) for the residual
+lambda_pde: 1.0e-3           # weight on normalized L_pde = mean(resid^2) / R0^2
+lambda_ic: 1.0               # weight on the IC loss MSE(u(x,0), u0)
+floor_samples: 16            # calibration solver solutions for R0
+floor_seed: 777
+
+# training (shorter than the FNO; warm-started)
+epochs: 250
+batch_size: 20
+lr: 5.0e-4
+weight_decay: 0.0
+log_every: 10
+
+# test-time "Refine with physics" defaults
+refine_steps: 300
+refine_lr: 5.0e-3

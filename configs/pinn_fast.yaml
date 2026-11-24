@@ -1,0 +1,25 @@
+# PINN fast config for live retraining in the UI: target <= ~90 s on the GPU.  CLAUDE.md §5.1
+# Accuracy is lower than pinn_classic and is reported honestly.
+name: pinn_fast
+seed: 0
+device: cuda
+
+n_hidden_layers: 8
+width: 20
+
+n_collocation: 10000
+n_ic: 256
+n_bc: 100
+resample_every: 1000
+
+w_pde: 1.0
+w_ic: 1.0
+w_bc: 1.0
+
+adam_iters: 2200
+adam_lr: 1.0e-3
+lbfgs_iters: 500
+lbfgs_history: 50
+lbfgs_float64: false    # stay in float32 for speed
+
+log_every: 100

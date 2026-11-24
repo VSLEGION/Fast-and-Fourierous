@@ -1,0 +1,28 @@
+# PINN, "fundamental" (Raissi-style), classic case u0 = -sin(pi x).  CLAUDE.md §5.1
+name: pinn_classic
+seed: 0
+device: cuda
+
+# network: 8 hidden layers x 20 units, tanh, Xavier init
+n_hidden_layers: 8
+width: 20
+
+# sampling
+n_collocation: 20000    # PDE residual points (uniform random), resampled during Adam
+n_ic: 256               # initial-condition points at t = 0
+n_bc: 100               # t-points for the soft periodic BC
+resample_every: 1000    # resample collocation points every N Adam iterations
+
+# loss weights (L = w_pde*L_pde + w_ic*L_ic + w_bc*L_bc)
+w_pde: 1.0
+w_ic: 1.0
+w_bc: 1.0
+
+# optimization: Adam, then L-BFGS (strong Wolfe)
+adam_iters: 10000
+adam_lr: 1.0e-3
+lbfgs_iters: 5000
+lbfgs_history: 50
+lbfgs_float64: true     # run L-BFGS in float64 for the last digits of accuracy
+
+log_every: 100
