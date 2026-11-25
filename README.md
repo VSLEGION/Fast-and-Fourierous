@@ -1,4 +1,4 @@
-# Shock Lab — Burgers' shocks, from a PINN to an FNO to a PINO
+# Burgers' shocks, from a PINN to an FNO to a PINO
 
 An interactive, presentation-grade web app comparing three ways to solve the same
 PDE — viscous **Burgers' equation** on a periodic domain:
